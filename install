@@ -1,0 +1,7 @@
+qemu-system-x86_64 \
+    -m 2048 \
+    -drive file=$1,media=disk,if=virtio \
+    -cdrom $2 \
+    -sdl \
+    -netdev user,id=n1 -device virtio-net-pci,netdev=n1 \
+    $3
