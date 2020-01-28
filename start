@@ -1,6 +1,8 @@
+a1=$1
+shift 1
 qemu-system-x86_64 \
     -m 2048 \
-    -drive file=$1,media=disk,if=virtio \
+    -drive file=$a1,media=disk,if=virtio \
     -sdl \
-    -netdev user,id=n1 -device virtio-net-pci,netdev=n1 \
-    $2
+    -netdev user,id=n1,hostfwd=tcp::5522-:22,hostfwd=tcp::5543-:6443 -device virtio-net-pci,netdev=n1 \
+    $@
