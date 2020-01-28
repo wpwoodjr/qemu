@@ -1,8 +1,10 @@
 a1=$1
 shift 1
+# to use a graphical tty window instead of ssh pass "-sdl" instead of "-display none"
 qemu-system-x86_64 \
     -m 2048 \
     -drive file=$a1,media=disk,if=virtio \
-    -sdl \
+    -display none \
     -netdev user,id=n1,hostfwd=tcp::5522-:22,hostfwd=tcp::5543-:6443 -device virtio-net-pci,netdev=n1 \
-    $@
+    $@ \
+    &
