@@ -1,1 +1,2 @@
-qemu-img create -f qcow2 $1 $2G
+# https://www.jamescoyle.net/how-to/2060-qcow2-physical-size-with-different-preallocation-settings
+qemu-img create -f qcow2 -o preallocation=metadata -o size=$2G $1
